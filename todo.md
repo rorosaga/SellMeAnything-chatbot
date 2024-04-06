@@ -1,0 +1,1 @@
+- Make the LLM read every user input, assign and emotion to it, and then generate a response based on that emotion. Store the inputs along with the emotions in a database.
