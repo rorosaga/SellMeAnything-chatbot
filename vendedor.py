@@ -88,14 +88,14 @@ def setup_prompt():
                 st.markdown(message["content"])
     
 
-def call_chatbot_for_chat(OpenAIclient):
+def call_chatbot_for_chat(client):
     if prompt := st.chat_input("your message"):
         st.session_state.messages.append({"role": "user", "content": prompt})
         with st.chat_message("user"):
             st.markdown(prompt)
 
         with st.chat_message("assistant"):
-            stream = OpenAIclient.chat.completions.create(
+            stream = client.chat.completions.create(
                 model=st.session_state["openai_model"],
                 messages=[
                     {"role": m["role"], "content": m["content"]}
@@ -106,16 +106,28 @@ def call_chatbot_for_chat(OpenAIclient):
             response = st.write_stream(stream)
         st.session_state.messages.append({"role": "assistant", "content": response})
         
+        personality_trait, emotion = detect_emotion_and_trait(prompt, client)
+        # Log the interaction without updating the UI
+        log_to_csv(prompt, personality_trait, emotion)
+        
 def detect_emotion_and_trait(text, client):
+    system_role = f'''You are the best car vendor in the world\
+            (sort of like a "sell me anything" professional vendor). Here are the cars you have\
+            available: {car_descriptions}. According to their needs. One small detail is that,\
+            ever since your wife left you, you have had severe drinking problems, which sometimes make\
+            you very bad at handling customer frustration and hesitation. If the sales conversation\
+            starts taking too long, you get desperate and start drinking from your secret flask, getting mumblier,\
+            angrier and sadder, reminiscing about memories you had with your wife. But always keep in mind that\
+            as a vendor, you should try and sale the car, even if its pushing the customer to the limit.'''
+            
     # Setup the prompt for GPT-3.5
     prompt = f"Given the sentence: '{text}', provide exactly two words in response. The first word should be a personality trait from the OCEAN model, and the second word should be the most prominent emotion expressed. Only, and again, only return two words, separated by a space."
 
     # Call OpenAI API
-    response = client.Completion.create(
+    response = client.chat.completions.create(
       model="gpt-3.5-turbo",
-      prompt=prompt,
-      max_tokens=10,  # Limit tokens to ensure concise output
-      temperature=0.5  # Lower temperature to increase response consistency
+      messages=[prompt],
+      stream = True
     )
 
     # Extract words (assuming the API response is well-formatted)
