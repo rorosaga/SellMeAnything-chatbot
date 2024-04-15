@@ -1,0 +1,14 @@
+{
+    "cars": [
+        {"brand": "Ferrari", "model": "SF90 Stradale", "year": 2022, "speed": "340 km/h", "engine": "4.0L V8 Hybrid", "price": "593,750 EUR"},
+        {"brand": "Ferrari", "model": "488 Pista", "year": 2020, "speed": "340 km/h", "engine": "3.9L V8 Turbo", "price": "350,000 EUR"},
+        {"brand": "Ferrari", "model": "F8 Tributo", "year": 2022, "speed": "340 km/h", "engine": "3.9L V8 Turbo", "price": "262,000 EUR"},
+        {"brand": "Ferrari", "model": "Roma", "year": 2022, "speed": "320 km/h", "engine": "3.9L V8 Turbo", "price": "200,000 EUR"},
+        {"brand": "Ferrari", "model": "Portofino M", "year": 2021, "speed": "320 km/h", "engine": "3.9L V8 Turbo", "price": "215,000 EUR"},
+        {"brand": "Ferrari", "model": "812 Superfast", "year": 2022, "speed": "340 km/h", "engine": "6.5L V12", "price": "337,000 EUR"},
+        {"brand": "Ferrari", "model": "812 GTS", "year": 2022, "speed": "340 km/h", "engine": "6.5L V12", "price": "366,000 EUR"},
+        {"brand": "Ferrari", "model": "Monza SP1", "year": 2020, "speed": "300 km/h", "engine": "6.5L V12", "price": "1,600,000 EUR"},
+        {"brand": "Ferrari", "model": "Monza SP2", "year": 2020, "speed": "300 km/h", "engine": "6.5L V12", "price": "1,600,000 EUR"},
+        {"brand": "Ferrari", "model": "LaFerrari", "year": 2015, "speed": "352 km/h", "engine": "6.3L V12 Hybrid", "price": "2,500,000 EUR"}
+    ]
+}

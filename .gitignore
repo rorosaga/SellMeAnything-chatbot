@@ -1,2 +1,8 @@
+<<<<<<< HEAD
 langchain-venv
 key.txt
+=======
+langchain-venv/
+key.txt
+user_interactions.csv
+>>>>>>> 41fe4e8 (Fixed issues with .gitignore, created JSON, fixed formatting of vendedor.py)
