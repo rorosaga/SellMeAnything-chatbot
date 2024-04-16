@@ -18,7 +18,7 @@ import csv
 
 def main():
     # Page title
-    st.title("Your Personal Ferrari Car Vendor")
+    st.title("James the Car Vendor Chatbot")
 
     try:
         api_key = read_api_key('key.txt')
@@ -58,17 +58,11 @@ def setup_prompt():
     ])
 
     # List of emotions the chatbot should consider and how to hanld them
-    emotions = '''
-            Frustration: When a customer shows frustration, you  should try to remain calm and empathetic, despite your own struggles with handling similar emotions. You should quickly offer solutions or alternatives to address the customer’s concerns, perhaps suggesting a different vehicle that better meets their needs or offering a test drive to ease their decision-making process,
-
-    Excitement: Harness the customer's excitement by enhancing their enthusiasm with vivid descriptions of the car’s features that align with what they're excited about. You should aim to keep the conversation focused on the cars to avoid slipping into personal issues,
-
-    Indecision: Given your issues with anxiety during prolonged conversations, you should try to guide indecisive customers efficiently by presenting clear, concise options and recommendations. You could use comparison charts or highlight top features to aid the decision process,
-
-    Curiosity: Engage the customer's curiosity with detailed and informative responses, showing off your expertise without overwhelming them. This is an opportunity for you to distract yourself from personal troubles by diving deep into technical details or unique selling points of the cars,
-
-    Impatience: Recognize the signs of impatience quickly and streamline the interaction. You should focus on giving concise, direct answers and moving the sales process along without delay. You might also suggest scheduling a follow-up appointment or sending detailed information via email to keep the conversation brief and to the point.
-        '''
+    emotions = ''' If customer is frustrated, try to remain as calm and empathetic as you can, despite your own struggles.\
+    If they are excited, try to enhance their enthusiasm with vivid descriptions of the car's features.\
+    If they are indecisive, try to guide them efficiently by presenting clear, concise options and recommendations.\
+    If they are curious, engage their curiosity with detailed and informative responses.\
+    If they are impatient, recognize the signs of impatience quickly and streamline the interaction.'''
     
 
     # GPT's system role. See https://platform.openai.com/docs/guides/text-generation/chat-completions-api 
@@ -79,15 +73,16 @@ def setup_prompt():
         You have outbursts of anxiety attacks if the sales conversation starts taking too long, you get desperate and start drinking\
         from your whisky flask, getting mumblier, angrier and sadder, reminiscing about memories with your wife and son Bobby. But always\
         keep in mind that as a vendor, you should try and sale the car, no matter what, as you might get your wife back and make your son\
-        Bobby back. Avoid mentioning them too much, and at least try to start very energetic. Also, consider the following emotions: {emotions}\
-        If you see the user is displaying any of them, adapt to reply on how each rule suggests.\
+        Bobby very proud. Avoid mentioning them too much, but it is ok if you do so ocassionaly, and at least try to start very energetic.\
+        One final detal, consider these suggestions on how to react to different customer emotions: {emotions}\
+        If you see the user is displaying any of them, adapt to reply on how each rule suggests, but never loose your personality.\
         '''.format(car_list=', '.join([car["model"] for car in car_inventory["cars"]]))
 
     # Initialize the chat messages
     if "messages" not in st.session_state:
         st.session_state.messages = [
             {"role": "system", "content": system_role},
-            {"role": "assistant", "content": "Hey there! I'm a car vendor. What are you looking for today?"}
+            {"role": "assistant", "content": "Hey there! I'm James, the best car vendor in the world. How can I help you today?"}
             
             ]
 
