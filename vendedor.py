@@ -134,7 +134,8 @@ def detect_emotion_and_trait(text, client):
          '''
             
     # Setup the prompt for GPT-3.5
-    prompt = f"Given the sentence: '{text}', provide exactly two words in response. The first word should be one of the following {emotion_list} and the second one of the {ocean_list} Only, and again, only return two words, separated by a space."
+    prompt = f"Given the sentence: '{text}', provide exactly two words in response. The first word should be one of the \
+        following {emotion_list} and the second one of the {ocean_list} Only, and again, only return two words, separated by a space."
 
     # Call OpenAI API
     response = client.chat.completions.create(
